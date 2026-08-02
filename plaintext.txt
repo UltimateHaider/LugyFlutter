@@ -1,0 +1,101 @@
+lugyflutter/
+│
+├── 📂 src/                               # ✅ __init__.py هنا
+│   ├── __init__.py                       # ← ملف التهيئة الرئيسي
+│   │
+│   ├── 📂 core/                          # ✅ __init__.py هنا
+│   │   ├── __init__.py                   # ← تهيئة حزمة core
+│   │   ├── agent.py
+│   │   ├── config.py
+│   │   ├── enums.py
+│   │   └── exceptions.py
+│   │
+│   ├── 📂 extraction/                    # ✅ __init__.py هنا
+│   │   ├── __init__.py                   # ← تهيئة حزمة extraction
+│   │   ├── extractor.py
+│   │   ├── regex_patterns.py
+│   │   └── llm_fallback.py
+│   │
+│   ├── 📂 browser/                       # ✅ __init__.py هنا
+│   │   ├── __init__.py                   # ← تهيئة حزمة browser
+│   │   ├── browser_manager.py
+│   │   ├── self_healing.py
+│   │   ├── vision_fallback.py
+│   │   └── selectors.py
+│   │
+│   ├── 📂 checkpoint/                    # ✅ __init__.py هنا
+│   │   ├── __init__.py                   # ← تهيئة حزمة checkpoint
+│   │   ├── checkpoint_manager.py
+│   │   ├── checkpoint_storage.py
+│   │   └── state_sync.py
+│   │
+│   ├── 📂 context/                       # ✅ __init__.py هنا
+│   │   ├── __init__.py                   # ← تهيئة حزمة context
+│   │   ├── context_manager.py
+│   │   ├── project_registry.py
+│   │   └── conversation_logger.py
+│   │
+│   ├── 📂 utils/                         # ✅ __init__.py هنا
+│   │   ├── __init__.py                   # ← تهيئة حزمة utils
+│   │   ├── safe_input.py
+│   │   ├── colors.py
+│   │   ├── logger.py
+│   │   ├── validators.py
+│   │   └── helpers.py
+│   │
+│   ├── 📂 web/                           # ✅ __init__.py هنا
+│   │   ├── __init__.py                   # ← تهيئة حزمة web
+│   │   ├── dashboard.py
+│   │   ├── api.py
+│   │   ├── models.py
+│   │   └── 📂 static/
+│   │       ├── __init__.py               # ← اختياري (للمجلدات الفارغة)
+│   │       ├── 📂 css/
+│   │       │   └── style.css
+│   │       └── 📂 js/
+│   │           └── dashboard.js
+│   │
+│   └── 📂 tests/                         # ✅ __init__.py هنا
+│       ├── __init__.py                   # ← تهيئة حزمة tests
+│       ├── test_extractor.py
+│       ├── test_checkpoints.py
+│       ├── test_agent.py
+│       ├── test_self_healing.py
+│       ├── test_api.py
+│       ├── test_utils.py
+│       ├── conftest.py
+│       └── 📂 fixtures/
+│           ├── __init__.py               # ← اختياري
+│           ├── sample_projects.json
+│           └── test_data.py
+│
+├── 📂 logs/                              # ❌ لا يحتاج __init__.py (مجلد بيانات)
+│   ├── lugyflutter.log
+│   ├── conversation.json
+│   ├── projects_registry.json
+│   └── 📂 screenshots/
+│
+├── 📂 scripts/                           # ❌ لا يحتاج __init__.py (سكربتات)
+│   ├── setup.sh
+│   ├── setup.bat
+│   ├── install_dependencies.py
+│   ├── run_dashboard.py
+│   ├── run_api.py
+│   └── run_tests.py
+│
+├── 📂 docs/                              # ❌ لا يحتاج __init__.py (توثيق)
+│   ├── README.md
+│   ├── API.md
+│   └── 📂 images/
+│
+├── .env                                  # ❌ ملف إعدادات
+├── .env.example                          # ❌ نموذج إعدادات
+├── .gitignore                            # ❌ ملف Git
+├── requirements.txt                      # ❌ متطلبات
+├── requirements-dev.txt                  # ❌ متطلبات تطوير
+├── setup.py                              # ❌ إعدادات التثبيت
+├── pyproject.toml                        # ❌ إعدادات المشروع
+├── pytest.ini                            # ❌ إعدادات pytest
+├── LICENSE                               # ❌ رخصة
+├── README.md                             # ❌ توثيق
+└── main.py                               # ❌ نقطة الدخول (ليس حزمة)

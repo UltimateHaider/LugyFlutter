@@ -1,0 +1,29 @@
+# LugyFlutter - المتطلبات الأساسية
+browser-use>=0.1.0
+langchain-google-genai>=1.0.0
+google-generativeai>=0.3.0
+pillow>=10.0.0
+beautifulsoup4>=4.12.0
+playwright>=1.40.0
+
+# الإضافات المتقدمة
+streamlit>=1.28.0
+streamlit-autorefresh>=1.0.0
+fastapi>=0.104.0
+uvicorn>=0.24.0
+python-dotenv>=1.0.0
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+
+# الرؤية الحاسوبية
+opencv-python>=4.8.0
+pytesseract>=0.3.10
+
+# تحليل البيانات
+pandas>=2.0.0
+plotly>=5.17.0
+
+# أدوات إضافية
+typing-extensions>=4.7.0
+dataclasses-json>=0.5.0

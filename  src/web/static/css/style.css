@@ -1,0 +1,1221 @@
+/**
+ * LugyFlutter - Dashboard Styles
+ * ملف CSS الخاص بلوحة التحكم Streamlit
+ * يحتوي على أنماط مخصصة وتحسينات للواجهة
+ */
+
+/* ============================================================
+   المتغيرات العامة (CSS Variables)
+   ============================================================ */
+
+:root {
+    /* الألوان الأساسية */
+    --lugy-primary: #6200EE;
+    --lugy-primary-dark: #3700B3;
+    --lugy-primary-light: #BB86FC;
+    --lugy-secondary: #03DAC6;
+    --lugy-secondary-dark: #018786;
+    
+    /* ألوان الخلفية */
+    --lugy-bg-primary: #1A1A2E;
+    --lugy-bg-secondary: #1E1E2E;
+    --lugy-bg-card: #252540;
+    --lugy-bg-input: #2D2D44;
+    --lugy-bg-hover: #2D2D44;
+    
+    /* ألوان النص */
+    --lugy-text-primary: #FFFFFF;
+    --lugy-text-secondary: #C8C8D4;
+    --lugy-text-muted: #8888A0;
+    --lugy-text-inverse: #1A1A2E;
+    
+    /* ألوان الحالة */
+    --lugy-success: #4CAF50;
+    --lugy-success-dark: #388E3C;
+    --lugy-error: #F44336;
+    --lugy-error-dark: #D32F2F;
+    --lugy-warning: #FFC107;
+    --lugy-warning-dark: #F9A825;
+    --lugy-info: #2196F3;
+    --lugy-info-dark: #1976D2;
+    
+    /* ألوان الحدود */
+    --lugy-border: #2D2D44;
+    --lugy-border-light: #3D3D5C;
+    --lugy-border-hover: #6200EE;
+    
+    /* الأحجام */
+    --lugy-radius: 10px;
+    --lugy-radius-sm: 6px;
+    --lugy-radius-lg: 16px;
+    --lugy-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --lugy-shadow-hover: 0 8px 40px rgba(98, 0, 238, 0.15);
+    
+    /* الخطوط */
+    --lugy-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --lugy-font-mono: 'Courier New', monospace;
+    
+    /* الانتقالات */
+    --lugy-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --lugy-transition-fast: all 0.15s ease;
+}
+
+
+/* ============================================================
+   أنماط الجسم الرئيسية
+   ============================================================ */
+
+body {
+    font-family: var(--lugy-font-family);
+    background: var(--lugy-bg-primary);
+    color: var(--lugy-text-primary);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* تخصيص شريط التمرير */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--lugy-bg-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--lugy-bg-input);
+    border-radius: 4px;
+    transition: var(--lugy-transition);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--lugy-primary);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--lugy-bg-primary);
+}
+
+
+/* ============================================================
+   أنماط الرأس (Header)
+   ============================================================ */
+
+.lugy-header {
+    background: linear-gradient(135deg, var(--lugy-primary-dark), var(--lugy-primary));
+    padding: 1.5rem 2rem;
+    border-radius: var(--lugy-radius);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.lugy-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.05);
+    transform: rotate(-15deg);
+    pointer-events: none;
+}
+
+.lugy-header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--lugy-text-primary);
+    position: relative;
+    z-index: 1;
+}
+
+.lugy-header p {
+    margin: 0.5rem 0 0 0;
+    opacity: 0.9;
+    font-size: 1.1rem;
+    color: var(--lugy-text-primary);
+    position: relative;
+    z-index: 1;
+}
+
+.lugy-header .status-badge {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--lugy-text-primary);
+    margin-top: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.lugy-header .status-badge.active {
+    background: rgba(76, 175, 80, 0.3);
+    color: #81C784;
+}
+
+.lugy-header .status-badge.inactive {
+    background: rgba(244, 67, 54, 0.3);
+    color: #EF9A9A;
+}
+
+
+/* ============================================================
+   أنماط البطاقات (Cards)
+   ============================================================ */
+
+.lugy-card {
+    background: var(--lugy-bg-secondary);
+    border-radius: var(--lugy-radius);
+    padding: 1.5rem;
+    border: 1px solid var(--lugy-border);
+    transition: var(--lugy-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.lugy-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--lugy-primary), var(--lugy-primary-light));
+    opacity: 0;
+    transition: var(--lugy-transition);
+}
+
+.lugy-card:hover {
+    border-color: var(--lugy-border-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--lugy-shadow-hover);
+}
+
+.lugy-card:hover::before {
+    opacity: 1;
+}
+
+.lugy-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--lugy-text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.lugy-card .card-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--lugy-text-primary);
+}
+
+.lugy-card .card-change {
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+.lugy-card .card-change.positive {
+    color: var(--lugy-success);
+}
+
+.lugy-card .card-change.negative {
+    color: var(--lugy-error);
+}
+
+.lugy-card .card-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    opacity: 0.2;
+}
+
+/* بطاقات متريكات */
+.lugy-metric-card {
+    background: var(--lugy-bg-secondary);
+    border-radius: var(--lugy-radius);
+    padding: 1.25rem;
+    border: 1px solid var(--lugy-border);
+    transition: var(--lugy-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.lugy-metric-card:hover {
+    border-color: var(--lugy-primary);
+    transform: translateY(-2px);
+}
+
+.lugy-metric-card .metric-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.lugy-metric-card .metric-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--lugy-text-primary);
+}
+
+.lugy-metric-card .metric-label {
+    font-size: 0.85rem;
+    color: var(--lugy-text-muted);
+    margin-top: 0.25rem;
+}
+
+.lugy-metric-card .metric-trend {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.85rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    background: var(--lugy-bg-input);
+}
+
+.lugy-metric-card .metric-trend.up {
+    color: var(--lugy-success);
+}
+
+.lugy-metric-card .metric-trend.down {
+    color: var(--lugy-error);
+}
+
+
+/* ============================================================
+   أنماط الحالة (Status)
+   ============================================================ */
+
+.lugy-status-box {
+    padding: 1rem;
+    border-radius: var(--lugy-radius-sm);
+    border-left: 4px solid var(--lugy-primary);
+    background: var(--lugy-bg-card);
+    margin: 0.5rem 0;
+}
+
+.lugy-status-box.success {
+    border-left-color: var(--lugy-success);
+}
+
+.lugy-status-box.warning {
+    border-left-color: var(--lugy-warning);
+}
+
+.lugy-status-box.error {
+    border-left-color: var(--lugy-error);
+}
+
+.lugy-status-box.info {
+    border-left-color: var(--lugy-info);
+}
+
+.lugy-status-box .status-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.lugy-status-box .status-message {
+    color: var(--lugy-text-secondary);
+    font-size: 0.9rem;
+}
+
+
+/* ============================================================
+   أنماط الجداول (Tables)
+   ============================================================ */
+
+.lugy-table-container {
+    overflow-x: auto;
+    border-radius: var(--lugy-radius);
+    border: 1px solid var(--lugy-border);
+}
+
+.lugy-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.lugy-table thead {
+    background: var(--lugy-bg-card);
+}
+
+.lugy-table th {
+    padding: 0.75rem 1rem;
+    text-align: right;
+    font-weight: 600;
+    color: var(--lugy-text-secondary);
+    border-bottom: 2px solid var(--lugy-border);
+    white-space: nowrap;
+}
+
+.lugy-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--lugy-border);
+    color: var(--lugy-text-primary);
+}
+
+.lugy-table tbody tr:hover {
+    background: var(--lugy-bg-card);
+}
+
+.lugy-table .status-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.lugy-table .status-badge.active {
+    background: rgba(76, 175, 80, 0.2);
+    color: var(--lugy-success);
+}
+
+.lugy-table .status-badge.archived {
+    background: rgba(136, 136, 160, 0.2);
+    color: var(--lugy-text-muted);
+}
+
+.lugy-table .status-badge.error {
+    background: rgba(244, 67, 54, 0.2);
+    color: var(--lugy-error);
+}
+
+
+/* ============================================================
+   أنماط النماذج (Forms)
+   ============================================================ */
+
+.lugy-input {
+    background: var(--lugy-bg-input);
+    border: 1px solid var(--lugy-border);
+    border-radius: var(--lugy-radius-sm);
+    padding: 0.6rem 1rem;
+    color: var(--lugy-text-primary);
+    font-size: 0.95rem;
+    transition: var(--lugy-transition-fast);
+    width: 100%;
+    outline: none;
+}
+
+.lugy-input:focus {
+    border-color: var(--lugy-primary);
+    box-shadow: 0 0 0 3px rgba(98, 0, 238, 0.15);
+}
+
+.lugy-input::placeholder {
+    color: var(--lugy-text-muted);
+}
+
+.lugy-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.lugy-select {
+    background: var(--lugy-bg-input);
+    border: 1px solid var(--lugy-border);
+    border-radius: var(--lugy-radius-sm);
+    padding: 0.6rem 1rem;
+    color: var(--lugy-text-primary);
+    font-size: 0.95rem;
+    transition: var(--lugy-transition-fast);
+    width: 100%;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238888A0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 1rem center;
+    padding-left: 2.5rem;
+}
+
+.lugy-select:focus {
+    border-color: var(--lugy-primary);
+    box-shadow: 0 0 0 3px rgba(98, 0, 238, 0.15);
+}
+
+.lugy-textarea {
+    background: var(--lugy-bg-input);
+    border: 1px solid var(--lugy-border);
+    border-radius: var(--lugy-radius-sm);
+    padding: 0.6rem 1rem;
+    color: var(--lugy-text-primary);
+    font-size: 0.95rem;
+    transition: var(--lugy-transition-fast);
+    width: 100%;
+    min-height: 100px;
+    resize: vertical;
+    outline: none;
+    font-family: var(--lugy-font-family);
+}
+
+.lugy-textarea:focus {
+    border-color: var(--lugy-primary);
+    box-shadow: 0 0 0 3px rgba(98, 0, 238, 0.15);
+}
+
+
+/* ============================================================
+   أنماط الأزرار (Buttons)
+   ============================================================ */
+
+.lugy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.4rem;
+    border: none;
+    border-radius: var(--lugy-radius-sm);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--lugy-transition-fast);
+    text-decoration: none;
+    color: var(--lugy-text-primary);
+    background: var(--lugy-bg-input);
+    position: relative;
+    overflow: hidden;
+}
+
+.lugy-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0);
+    transition: var(--lugy-transition-fast);
+}
+
+.lugy-btn:hover::after {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.lugy-btn:active::after {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.lugy-btn-primary {
+    background: var(--lugy-primary);
+    color: var(--lugy-text-primary);
+}
+
+.lugy-btn-primary:hover {
+    background: var(--lugy-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(98, 0, 238, 0.3);
+}
+
+.lugy-btn-success {
+    background: var(--lugy-success);
+    color: var(--lugy-text-primary);
+}
+
+.lugy-btn-success:hover {
+    background: var(--lugy-success-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.lugy-btn-danger {
+    background: var(--lugy-error);
+    color: var(--lugy-text-primary);
+}
+
+.lugy-btn-danger:hover {
+    background: var(--lugy-error-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+.lugy-btn-warning {
+    background: var(--lugy-warning);
+    color: var(--lugy-text-inverse);
+}
+
+.lugy-btn-warning:hover {
+    background: var(--lugy-warning-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+.lugy-btn-outline {
+    background: transparent;
+    border: 1px solid var(--lugy-border);
+    color: var(--lugy-text-secondary);
+}
+
+.lugy-btn-outline:hover {
+    border-color: var(--lugy-primary);
+    color: var(--lugy-primary-light);
+    background: rgba(98, 0, 238, 0.05);
+}
+
+.lugy-btn-sm {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+}
+
+.lugy-btn-lg {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+}
+
+.lugy-btn-block {
+    width: 100%;
+    justify-content: center;
+}
+
+.lugy-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* زر التحميل */
+.lugy-btn.loading {
+    pointer-events: none;
+}
+
+.lugy-btn.loading .btn-text {
+    visibility: hidden;
+}
+
+.lugy-btn.loading::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-top-color: var(--lugy-text-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+
+/* ============================================================
+   أنماط التبويبات (Tabs)
+   ============================================================ */
+
+.lugy-tabs {
+    display: flex;
+    gap: 0.25rem;
+    border-bottom: 1px solid var(--lugy-border);
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.lugy-tab {
+    padding: 0.5rem 1.25rem;
+    border: none;
+    background: none;
+    color: var(--lugy-text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--lugy-transition-fast);
+    border-radius: var(--lugy-radius-sm);
+    white-space: nowrap;
+    position: relative;
+}
+
+.lugy-tab:hover {
+    color: var(--lugy-text-primary);
+    background: var(--lugy-bg-card);
+}
+
+.lugy-tab.active {
+    color: var(--lugy-primary-light);
+}
+
+.lugy-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: var(--lugy-primary);
+    border-radius: 1px;
+}
+
+
+/* ============================================================
+   أنماط الشريط الجانبي (Sidebar)
+   ============================================================ */
+
+.lugy-sidebar {
+    background: var(--lugy-bg-secondary);
+    border-right: 1px solid var(--lugy-border);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.lugy-sidebar .sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0 1.5rem 0;
+    border-bottom: 1px solid var(--lugy-border);
+    margin-bottom: 1.5rem;
+}
+
+.lugy-sidebar .sidebar-brand .brand-icon {
+    font-size: 2rem;
+}
+
+.lugy-sidebar .sidebar-brand .brand-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--lugy-text-primary);
+}
+
+.lugy-sidebar .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.lugy-sidebar .sidebar-nav .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    border-radius: var(--lugy-radius-sm);
+    color: var(--lugy-text-secondary);
+    text-decoration: none;
+    transition: var(--lugy-transition-fast);
+    cursor: pointer;
+}
+
+.lugy-sidebar .sidebar-nav .nav-item:hover {
+    background: var(--lugy-bg-card);
+    color: var(--lugy-text-primary);
+}
+
+.lugy-sidebar .sidebar-nav .nav-item.active {
+    background: rgba(98, 0, 238, 0.15);
+    color: var(--lugy-primary-light);
+}
+
+.lugy-sidebar .sidebar-nav .nav-item .nav-icon {
+    font-size: 1.2rem;
+    width: 1.5rem;
+    text-align: center;
+}
+
+
+/* ============================================================
+   أنماط الإشعارات (Notifications)
+   ============================================================ */
+
+#lugy-notifications {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    width: 100%;
+    pointer-events: none;
+}
+
+#lugy-notifications .notification {
+    pointer-events: auto;
+    background: var(--lugy-bg-secondary);
+    border-left: 4px solid var(--lugy-primary);
+    border-radius: var(--lugy-radius-sm);
+    padding: 12px 16px;
+    color: var(--lugy-text-primary);
+    font-size: 14px;
+    box-shadow: var(--lugy-shadow);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: slideInRight 0.3s ease;
+    cursor: pointer;
+    transition: var(--lugy-transition-fast);
+}
+
+#lugy-notifications .notification:hover {
+    transform: translateX(-4px);
+}
+
+#lugy-notifications .notification.success {
+    border-left-color: var(--lugy-success);
+}
+
+#lugy-notifications .notification.error {
+    border-left-color: var(--lugy-error);
+}
+
+#lugy-notifications .notification.warning {
+    border-left-color: var(--lugy-warning);
+}
+
+#lugy-notifications .notification.info {
+    border-left-color: var(--lugy-info);
+}
+
+#lugy-notifications .notification .notif-icon {
+    font-size: 20px;
+}
+
+#lugy-notifications .notification .notif-content {
+    flex: 1;
+}
+
+#lugy-notifications .notification .notif-close {
+    cursor: pointer;
+    opacity: 0.6;
+    font-size: 16px;
+    padding: 0 4px;
+    transition: var(--lugy-transition-fast);
+}
+
+#lugy-notifications .notification .notif-close:hover {
+    opacity: 1;
+}
+
+
+/* ============================================================
+   أنماط عارض السجلات (Log Viewer)
+   ============================================================ */
+
+.lugy-log-viewer {
+    background: var(--lugy-bg-primary);
+    border-radius: var(--lugy-radius);
+    padding: 12px;
+    font-family: var(--lugy-font-mono);
+    font-size: 13px;
+    color: var(--lugy-text-secondary);
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+    border: 1px solid var(--lugy-border);
+}
+
+.lugy-log-viewer .log-line {
+    padding: 1px 0;
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.lugy-log-viewer .log-line .log-time {
+    color: var(--lugy-text-muted);
+}
+
+.lugy-log-viewer .log-line .log-level {
+    font-weight: bold;
+    min-width: 60px;
+}
+
+.lugy-log-viewer .log-line .log-level.DEBUG {
+    color: var(--lugy-text-muted);
+}
+
+.lugy-log-viewer .log-line .log-level.INFO {
+    color: var(--lugy-success);
+}
+
+.lugy-log-viewer .log-line .log-level.WARNING {
+    color: var(--lugy-warning);
+}
+
+.lugy-log-viewer .log-line .log-level.ERROR {
+    color: var(--lugy-error);
+}
+
+.lugy-log-viewer .log-line .log-level.CRITICAL {
+    color: #FF1744;
+}
+
+.lugy-log-viewer .log-line .log-message {
+    color: var(--lugy-text-primary);
+}
+
+
+/* ============================================================
+   أنماط شريط التقدم (Progress Bars)
+   ============================================================ */
+
+.lugy-progress {
+    width: 100%;
+    height: 6px;
+    background: var(--lugy-bg-input);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.lugy-progress .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--lugy-primary), var(--lugy-primary-light));
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+.lugy-progress .progress-fill.success {
+    background: linear-gradient(90deg, var(--lugy-success), #81C784);
+}
+
+.lugy-progress .progress-fill.warning {
+    background: linear-gradient(90deg, var(--lugy-warning), #FFD54F);
+}
+
+.lugy-progress .progress-fill.error {
+    background: linear-gradient(90deg, var(--lugy-error), #EF9A9A);
+}
+
+
+/* ============================================================
+   أنماط التحميل (Loading Spinner)
+   ============================================================ */
+
+.lugy-spinner {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--lugy-bg-input);
+    border-top: 3px solid var(--lugy-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.lugy-spinner-sm {
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+}
+
+.lugy-spinner-lg {
+    width: 40px;
+    height: 40px;
+    border-width: 4px;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutRight {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+
+/* ============================================================
+   أنماط التذيير (Footer)
+   ============================================================ */
+
+.lugy-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--lugy-text-muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--lugy-border);
+    margin-top: 3rem;
+}
+
+.lugy-footer a {
+    color: var(--lugy-primary-light);
+    text-decoration: none;
+    transition: var(--lugy-transition-fast);
+}
+
+.lugy-footer a:hover {
+    color: var(--lugy-text-primary);
+}
+
+
+/* ============================================================
+   أنماط استجابة (Responsive)
+   ============================================================ */
+
+@media (max-width: 1200px) {
+    .lugy-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .lugy-card .card-value {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .lugy-header {
+        padding: 1rem 1.25rem;
+    }
+    
+    .lugy-header h1 {
+        font-size: 1.4rem;
+    }
+    
+    .lugy-card {
+        padding: 1rem;
+    }
+    
+    .lugy-card .card-value {
+        font-size: 1.3rem;
+    }
+    
+    .lugy-metric-card .metric-value {
+        font-size: 1.4rem;
+    }
+    
+    .lugy-tabs {
+        gap: 0.15rem;
+    }
+    
+    .lugy-tab {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    #lugy-notifications {
+        max-width: 90%;
+        right: 5%;
+        top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lugy-header h1 {
+        font-size: 1.2rem;
+    }
+    
+    .lugy-header p {
+        font-size: 0.9rem;
+    }
+    
+    .lugy-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .lugy-table th,
+    .lugy-table td {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.8rem;
+    }
+}
+
+
+/* ============================================================
+   أنماط خاصة بـ Streamlit
+   ============================================================ */
+
+/* إخفاء عناصر Streamlit الافتراضية */
+.stApp {
+    background: var(--lugy-bg-primary) !important;
+}
+
+.stSidebar {
+    background: var(--lugy-bg-secondary) !important;
+}
+
+/* تخصيص عناصر Streamlit */
+.stSelectbox,
+.stTextInput,
+.stNumberInput {
+    margin-bottom: 0.5rem;
+}
+
+.stSelectbox label,
+.stTextInput label,
+.stNumberInput label {
+    color: var(--lugy-text-secondary) !important;
+    font-weight: 500 !important;
+}
+
+/* أزرار Streamlit */
+.stButton button {
+    background: var(--lugy-primary) !important;
+    color: var(--lugy-text-primary) !important;
+    border: none !important;
+    border-radius: var(--lugy-radius-sm) !important;
+    padding: 0.5rem 1.5rem !important;
+    font-weight: 600 !important;
+    transition: var(--lugy-transition-fast) !important;
+}
+
+.stButton button:hover {
+    background: var(--lugy-primary-dark) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(98, 0, 238, 0.3) !important;
+}
+
+.stButton button:active {
+    transform: scale(0.98) !important;
+}
+
+/* مؤشرات Streamlit */
+.stAlert {
+    border-radius: var(--lugy-radius-sm) !important;
+}
+
+/* بيانات Streamlit */
+.stDataFrame {
+    border-radius: var(--lugy-radius) !important;
+    border: 1px solid var(--lugy-border) !important;
+    overflow: hidden !important;
+}
+
+.stDataFrame table {
+    background: var(--lugy-bg-secondary) !important;
+}
+
+.stDataFrame thead tr th {
+    background: var(--lugy-bg-card) !important;
+    color: var(--lugy-text-secondary) !important;
+}
+
+.stDataFrame tbody tr:hover {
+    background: var(--lugy-bg-card) !important;
+}
+
+
+/* ============================================================
+   أنماط إضافية
+   ============================================================ */
+
+/* أداة الفصل */
+.lugy-divider {
+    height: 1px;
+    background: var(--lugy-border);
+    margin: 1.5rem 0;
+}
+
+/* تسميات */
+.lugy-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--lugy-text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+/* مجموعات الأزرار */
+.lugy-btn-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.lugy-btn-group .lugy-btn {
+    flex: 1;
+    min-width: 80px;
+}
+
+/* أنماط النص */
+.lugy-text-muted {
+    color: var(--lugy-text-muted);
+}
+
+.lugy-text-primary {
+    color: var(--lugy-primary-light);
+}
+
+.lugy-text-success {
+    color: var(--lugy-success);
+}
+
+.lugy-text-error {
+    color: var(--lugy-error);
+}
+
+.lugy-text-warning {
+    color: var(--lugy-warning);
+}
+
+.lugy-text-center {
+    text-align: center;
+}
+
+.lugy-text-right {
+    text-align: right;
+}
+
+.lugy-text-left {
+    text-align: left;
+}
+
+.lugy-text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.lugy-mt-1 { margin-top: 0.5rem; }
+.lugy-mt-2 { margin-top: 1rem; }
+.lugy-mt-3 { margin-top: 1.5rem; }
+.lugy-mt-4 { margin-top: 2rem; }
+
+.lugy-mb-1 { margin-bottom: 0.5rem; }
+.lugy-mb-2 { margin-bottom: 1rem; }
+.lugy-mb-3 { margin-bottom: 1.5rem; }
+.lugy-mb-4 { margin-bottom: 2rem; }
+
+.lugy-p-1 { padding: 0.5rem; }
+.lugy-p-2 { padding: 1rem; }
+.lugy-p-3 { padding: 1.5rem; }
+.lugy-p-4 { padding: 2rem; }
+
+.lugy-d-flex { display: flex; }
+.lugy-d-grid { display: grid; }
+.lugy-d-none { display: none; }
+
+.lugy-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lugy-flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lugy-flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.lugy-gap-1 { gap: 0.5rem; }
+.lugy-gap-2 { gap: 1rem; }
+.lugy-gap-3 { gap: 1.5rem; }
+.lugy-gap-4 { gap: 2rem; }
+
+.lugy-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.lugy-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.lugy-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+.lugy-w-100 { width: 100%; }
+.lugy-h-100 { height: 100%; }
