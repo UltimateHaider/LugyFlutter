@@ -1,0 +1,414 @@
+[build-system]
+requires = [
+    "setuptools>=61.0.0",
+    "wheel>=0.37.0",
+    "setuptools_scm[toml]>=6.2.0"
+]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "lugyflutter"
+dynamic = ["version"]
+description = "LugyFlutter - الوكيل الذكي المتخصص في FlutterFlow"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "LugyFlutter Team", email = "support@lugyflutter.com"}
+]
+maintainers = [
+    {name = "LugyFlutter Team", email = "support@lugyflutter.com"}
+]
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Testing",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Natural Language :: Arabic",
+    "Natural Language :: English",
+]
+keywords = [
+    "flutterflow",
+    "ai-agent",
+    "automation",
+    "testing",
+    "flutter",
+    "gemini",
+    "browser-automation",
+    "self-healing",
+    "checkpoint",
+    "lugyflutter"
+]
+dependencies = [
+    "browser-use>=0.1.0",
+    "langchain-google-genai>=1.0.0",
+    "google-generativeai>=0.3.0",
+    "pillow>=10.0.0",
+    "beautifulsoup4>=4.12.0",
+    "python-dotenv>=1.0.0",
+    "requests>=2.28.0",
+    "psutil>=5.9.0",
+    "typing-extensions>=4.7.0",
+    "dataclasses-json>=0.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "pytest-xdist>=3.0.0",
+    "pytest-html>=3.2.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "isort>=5.12.0",
+    "pre-commit>=3.0.0",
+]
+test = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "pytest-xdist>=3.0.0",
+    "pytest-html>=3.2.0",
+]
+docs = [
+    "sphinx>=7.0.0",
+    "sphinx-rtd-theme>=2.0.0",
+    "myst-parser>=1.0.0",
+    "sphinx-autodoc-typehints>=1.23.0",
+]
+dashboard = [
+    "streamlit>=1.28.0",
+    "streamlit-autorefresh>=1.0.0",
+    "plotly>=5.17.0",
+    "pandas>=2.0.0",
+]
+api = [
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "python-multipart>=0.0.6",
+]
+vision = [
+    "opencv-python>=4.8.0",
+    "pytesseract>=0.3.10",
+]
+all = [
+    "streamlit>=1.28.0",
+    "streamlit-autorefresh>=1.0.0",
+    "plotly>=5.17.0",
+    "pandas>=2.0.0",
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "python-multipart>=0.0.6",
+    "opencv-python>=4.8.0",
+    "pytesseract>=0.3.10",
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "pytest-xdist>=3.0.0",
+    "pytest-html>=3.2.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "isort>=5.12.0",
+]
+
+[project.urls]
+Homepage = "https://lugyflutter.com"
+Documentation = "https://lugyflutter.com/docs"
+Repository = "https://github.com/lugyflutter/lugyflutter"
+Issues = "https://github.com/lugyflutter/lugyflutter/issues"
+Changelog = "https://github.com/lugyflutter/lugyflutter/releases"
+
+[project.scripts]
+lugyflutter = "main:main"
+lugy-dashboard = "src.web.dashboard:main"
+lugy-api = "src.web.api:run_api"
+
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = {find = {where = ["src"]}}
+include-package-data = true
+zip-safe = false
+
+[tool.setuptools.package-data]
+lugyflutter = [
+    "web/static/css/*.css",
+    "web/static/js/*.js",
+    "web/static/images/*.*",
+    "py.typed",
+]
+
+[tool.setuptools_scm]
+version_file = "src/_version.py"
+write_to = "src/_version.py"
+write_to_template = '"""Generated version file."""\n__version__ = "{version}"\n'
+fallback_version = "2.0.0"
+
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = [
+    "-ra",
+    "-q",
+    "--strict-markers",
+    "--tb=short",
+    "--color=yes",
+    "--maxfail=5",
+]
+testpaths = ["src/tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+asyncio_mode = "auto"
+markers = [
+    "asyncio: mark test as asynchronous",
+    "slow: mark test as slow running",
+    "integration: mark test as integration test",
+    "unit: mark test as unit test",
+    "ui: mark test as UI test",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["src"]
+omit = [
+    "src/tests/*",
+    "src/web/static/*",
+    "src/_version.py",
+]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+show_missing = true
+fail_under = 70
+
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | venv
+  | src/_version.py
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+skip_gitignore = true
+skip = [
+    "venv",
+    ".venv",
+    "build",
+    "dist",
+    "src/_version.py"
+]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+ignore_missing_imports = true
+exclude = [
+    "src/tests/",
+    "src/_version.py",
+    "src/web/static/",
+]
+
+[[tool.mypy.overrides]]
+module = [
+    "browser_use.*",
+    "langchain_google_genai.*",
+    "streamlit.*",
+    "fastapi.*",
+    "uvicorn.*",
+    "cv2.*",
+    "pytesseract.*",
+]
+ignore_missing_imports = true
+
+
+[tool.pylint]
+max-line-length = 100
+good-names = ["i", "j", "k", "ex", "Run", "_"]
+disable = [
+    "C0111",  # missing-docstring
+    "C0103",  # invalid-name
+    "R0903",  # too-few-public-methods
+    "R0913",  # too-many-arguments
+    "R0914",  # too-many-locals
+    "R0915",  # too-many-statements
+    "W0613",  # unused-argument
+    "W0511",  # fixme
+]
+extension-pkg-whitelist = ["cv2"]
+
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "src/_version.py",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by black)
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[tool.ruff.lint.per-file-ignores]
+"src/tests/*" = ["S101", "B011"]
+
+
+[tool.bandit]
+exclude_dirs = ["src/tests", "src/web/static"]
+skips = ["B101", "B102", "B103", "B104", "B105", "B106", "B107", "B108", "B109", "B110", "B111", "B112", "B113"]
+
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "2.0.0"
+version_files = [
+    "src/core/agent.py",
+    "pyproject.toml:version",
+]
+tag_format = "v$version"
+bump_message = "chore(release): bump version $current_version → $new_version"
+
+
+[tool.semantic_release]
+version_variable = "src/_version.py:__version__"
+build_command = "python -m build"
+upload_to_pypi = true
+upload_to_release = true
+branch = "main"
+
+
+[tool.mkdocs]
+site_name = "LugyFlutter Docs"
+site_url = "https://lugyflutter.com/docs"
+site_description = "LugyFlutter - الوكيل الذكي المتخصص في FlutterFlow"
+repo_name = "lugyflutter/lugyflutter"
+repo_url = "https://github.com/lugyflutter/lugyflutter"
+nav = [
+    {"Home": "index.md"},
+    {"Getting Started": "getting-started.md"},
+    {"Usage": "usage.md"},
+    {"API Reference": "api.md"},
+    {"Development": "development.md"},
+    {"Contributing": "contributing.md"},
+]
+theme = {name = "material", palette = {primary = "deep-purple", accent = "purple"}}
+plugins = [
+    "search",
+    "autorefs",
+    "mkdocstrings",
+    "mkdocs-jupyter",
+]
+markdown_extensions = [
+    "admonition",
+    "pymdownx.details",
+    "pymdownx.superfences",
+    "pymdownx.highlight",
+    "pymdownx.inlinehilite",
+    "pymdownx.emoji",
+    "toc",
+    "tables",
+    "fenced_code",
+]
+
+[tool.mkdocs.strict]
+fail_on_warnings = true
+
+
+[tool.pre-commit]
+repos = [
+    {repo = "https://github.com/pre-commit/pre-commit-hooks", rev = "v4.5.0", hooks = [
+        {id = "trailing-whitespace"},
+        {id = "end-of-file-fixer"},
+        {id = "check-yaml"},
+        {id = "check-added-large-files"},
+        {id = "check-json"},
+        {id = "check-toml"},
+        {id = "check-merge-conflict"},
+        {id = "debug-statements"},
+    ]},
+    {repo = "https://github.com/charliermarsh/ruff-pre-commit", rev = "v0.1.0", hooks = [
+        {id = "ruff", args = ["--fix"]},
+    ]},
+    {repo = "https://github.com/psf/black", rev = "23.11.0", hooks = [
+        {id = "black"},
+    ]},
+    {repo = "https://github.com/PyCQA/isort", rev = "5.12.0", hooks = [
+        {id = "isort", args = ["--profile", "black"]},
+    ]},
+    {repo = "https://github.com/pre-commit/mirrors-mypy", rev = "v1.7.0", hooks = [
+        {id = "mypy", args = ["--ignore-missing-imports"]},
+    ]},
+]
